@@ -1,0 +1,135 @@
+[gd_scene load_steps=15 format=3 uid="uid://b2q8t247y7a30"]
+
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="1_jawmv"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="4_um2ex"]
+[ext_resource type="Script" path="res://scripts/targetcamera.gd" id="6_w6637"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="9_dknvh"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="10_heoh0"]
+[ext_resource type="Script" path="res://scripts/player/player_state_grounded.gd" id="11_0br0g"]
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_ghdhj"]
+length = 0.5
+slide_on_slope = true
+
+[sub_resource type="Resource" id="Resource_rsx14"]
+script = ExtResource("10_heoh0")
+duration = 0.3
+transition = 0
+ease = 2
+
+[sub_resource type="Resource" id="Resource_fr047"]
+script = ExtResource("4_um2ex")
+cull_mask = 524287
+h_offset = 0.0
+v_offset = 0.0
+projection = 0
+fov = 37.8
+size = 1.0
+frustum_offset = Vector2(0, 0)
+near = 0.05
+far = 4000.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xkmrs"]
+radius = 0.25
+height = 1.96
+
+[sub_resource type="Resource" id="Resource_ebgtp"]
+script = ExtResource("10_heoh0")
+duration = 1.0
+transition = 0
+ease = 2
+
+[sub_resource type="Resource" id="Resource_l4wtx"]
+script = ExtResource("4_um2ex")
+cull_mask = 491519
+h_offset = 0.0
+v_offset = 0.0
+projection = 0
+fov = 37.8
+size = 1.0
+frustum_offset = Vector2(0, 0)
+near = 0.05
+far = 4000.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5fvbo"]
+radius = 0.3
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_t3sng"]
+top_radius = 0.3
+bottom_radius = 0.3
+height = 0.2
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("collider")]
+collision_layer = 2
+floor_stop_on_slope = false
+script = ExtResource("1_jawmv")
+collider = NodePath("CollisionShape3D")
+floor_stop_on_slope = false
+_floor_max_angle = 10.0
+max_step_height = 0.0
+
+[node name="SeparationRay1" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -1, -1.50996e-07, 0, 1.50996e-07, -1, 0, 1.51807, 0)
+shape = SubResource("SeparationRayShape3D_ghdhj")
+
+[node name="SeparationRay2" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1.50996e-07, 1, 0, -1, -1.50996e-07, 1, -6.60025e-15, 4.37114e-08, 0, 1.51807, 0)
+shape = SubResource("SeparationRayShape3D_ghdhj")
+
+[node name="SeparationRay3" type="CollisionShape3D" parent="."]
+transform = Transform3D(-1, 1.32005e-14, -8.74228e-08, 0, -1, -1.50996e-07, -8.74228e-08, -1.50996e-07, 1, 0, 1.51807, 0)
+shape = SubResource("SeparationRayShape3D_ghdhj")
+
+[node name="SeparationRay4" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.31134e-07, 1.50996e-07, -1, 0, -1, -1.50996e-07, -1, 1.98007e-14, -1.31134e-07, 0, 1.51807, 0)
+shape = SubResource("SeparationRayShape3D_ghdhj")
+
+[node name="PhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_target")]
+transform = Transform3D(1.00001, 0, 3.27826e-07, 0, 1, 0, -3.27826e-07, 0, 1.00001, 2.45869e-06, 1.4, 7.50006)
+script = ExtResource("9_dknvh")
+priority = 1
+follow_mode = 6
+follow_target = NodePath("../Model")
+tween_resource = SubResource("Resource_rsx14")
+tween_on_load = false
+camera_3d_resource = SubResource("Resource_fr047")
+follow_offset = Vector3(0, 1.4, 0)
+follow_distance = 7.5
+spring_length = 7.5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99, 0)
+shape = SubResource("CapsuleShape3D_xkmrs")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="." node_paths=PackedStringArray("_follow_targets")]
+transform = Transform3D(1, 0, 1.19371e-12, 0, 1, 0, -1.19371e-12, 0, 1, 0, 0.8, 0)
+spring_length = 7.5
+margin = 0.05
+script = ExtResource("6_w6637")
+_follow_targets = [NodePath("../Model")]
+
+[node name="LockOnCamera" type="Node3D" parent="SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.46983)
+script = ExtResource("9_dknvh")
+tween_resource = SubResource("Resource_ebgtp")
+camera_3d_resource = SubResource("Resource_l4wtx")
+
+[node name="GroundedState" type="Node" parent="."]
+script = ExtResource("11_0br0g")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
+target_position = Vector3(0, -8, 0)
+
+[node name="Model" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_5fvbo")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Model/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.00295e-08, 0.65554, 0.194089)
+mesh = SubResource("CylinderMesh_t3sng")

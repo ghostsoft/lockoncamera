@@ -1,0 +1,191 @@
+[gd_scene load_steps=9 format=4 uid="uid://bwkoq7jc3oxyp"]
+
+[ext_resource type="Script" path="res://scripts/target_mesh.gd" id="1_83dyv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wyhba"]
+cull_mode = 2
+depth_draw_mode = 2
+no_depth_test = true
+shading_mode = 0
+albedo_color = Color(1, 0.772549, 0, 1)
+disable_receive_shadows = true
+fixed_size = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_jyv1w"]
+_surfaces = [{
+"aabb": AABB(-1, -1, 0, 2, 2, 1e-05),
+"format": 34359742465,
+"index_count": 48,
+"index_data": PackedByteArray("DQACAAUADQAMAAIAFAAGABUAFAADAAYACwACAAoACwAFAAIABwAEAAAABwAJAAQADgAHAAAADgAPAAcAAQARABAAAQAIABEAAQASAAgAAQATABIABgAWABcABgADABYA"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AACAPwAAgD8AAACAAACAPwAAgL8AAACAAACAvwAAgD8AAACAAACAvwAAgL8AAACAAACAPgAAgD8AAACAzcxMv83MTD8AAACAzcxMv83MTL8AAACAzcxMP83MTD8AAACAzcxMP83MTL8AAACAAACAPs3MTD8AAACAAACAvgAAgD8AAACAAACAvs3MTD8AAACAAACAvwAAgD4AAACAzcxMvwAAgD4AAACAAACAPwAAgD4AAACAzcxMPwAAgD4AAACAAACAPwAAgL4AAACAzcxMPwAAgL4AAACAAACAPs3MTL8AAACAAACAPgAAgL8AAACANDOzvgAAgL8AAACANDOzvs3MTL8AAACAAACAvwAAgL4AAACAzcxMvwAAgL4AAACA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_3pni5"]
+resource_name = "target_mesh_Cube"
+_surfaces = [{
+"aabb": AABB(-1, -1, 0, 2, 2, 1e-05),
+"attribute_data": PackedByteArray("AAAQPwAAQD8AACA/AAAwPwAAwD4AADA/AADgPgAAQD8AABA/AAAAPwAAID8AABA/AADAPgAAED8AAOA+AAAAPwAAID8AACg/AAAQPwAAED8AAOA+AAAQPwAAED8AADA/AADgPgAAMD8AABA/AAAoPwAAID8AABg/AAAQPwAAGD8AAAg/AAAAPwAACD8AABA/AAAIPwAAQD8AAAg/AAAwPwAA8D4AAEA/AADwPgAAMD8AAOA+AAAoPwAAwD4AACg/AADAPgAAGD8AAOA+AAAYPwAA8D4AAAA/AADwPgAAED8="),
+"format": 34359742487,
+"index_count": 48,
+"index_data": PackedByteArray("EQAEAAkAEQAQAAQAGAAKABkAGAAGAAoADwAFAA4ADwAJAAUACwAIAAEACwANAAgAEgALAAAAEgATAAsAAwAVABQAAwAMABUAAgAWAAwAAgAXABYACgAaABsACgAHABoA"),
+"material": SubResource("StandardMaterial3D_wyhba"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 28,
+"vertex_data": PackedByteArray("AACAPwAAgD8AAACAAACAPwAAgD8AAACAAACAPwAAgL8AAACAAACAPwAAgL8AAACAAACAvwAAgD8AAACAAACAvwAAgD8AAACAAACAvwAAgL8AAACAAACAvwAAgL8AAACAAACAPgAAgD8AAACAzcxMv83MTD8AAACAzcxMv83MTL8AAACAzcxMP83MTD8AAACAzcxMP83MTL8AAACAAACAPs3MTD8AAACAAACAvgAAgD8AAACAAACAvs3MTD8AAACAAACAvwAAgD4AAACAzcxMvwAAgD4AAACAAACAPwAAgD4AAACAzcxMPwAAgD4AAACAAACAPwAAgL4AAACAzcxMPwAAgL4AAACAAACAPs3MTL8AAACAAACAPgAAgL8AAACANDOzvgAAgL8AAACANDOzvs3MTL8AAACAAACAvwAAgL4AAACAzcxMvwAAgL4AAACA/3//f/9/////f/9//7//3/9//3+hUFDo/3//f/9/////f/9//3////9//3+hUFDo/3//f/+//9//f/9//3////9//39mksv2/3//f/8//9//f/9//3////9//3//f////3//f/8//9//f/9//3////9//3//f////3//f/Jx+Pj/f/9//3////9//3//f////3//f/9/////f/9//3////9//3//f////3//f/9/////f/9/8nH4+P9//3//f////3//f7OVJPX/f/9//3////9//3//f////3//f/9///8=")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_jyv1w")
+
+[sub_resource type="Animation" id="Animation_hiahv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotato")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.14159]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:mesh:surface_0/material:transparency")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:mesh:surface_0/material:albedo_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.772549, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_wl7av"]
+resource_name = "fadeout"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:mesh:surface_0/material:transparency")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:mesh:surface_0/material:albedo_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0.772549, 0, 1), Color(1, 0.766667, 0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_j23my"]
+resource_name = "rotato"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotato")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.33333, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.571]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:mesh:surface_0/material:transparency")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:mesh:surface_0/material:albedo_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.772549, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2cym4"]
+_data = {
+"RESET": SubResource("Animation_hiahv"),
+"fadeout": SubResource("Animation_wl7av"),
+"rotato": SubResource("Animation_j23my")
+}
+
+[node name="Target" type="MeshInstance3D"]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0, 0, 0)
+layers = 32768
+mesh = SubResource("ArrayMesh_3pni5")
+skeleton = NodePath("")
+script = ExtResource("1_83dyv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2cym4")
+}
+autoplay = "rotato"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 0, 0, 122.182)
+cull_mask = 32768
+fov = 37.8
