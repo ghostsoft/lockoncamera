@@ -398,7 +398,7 @@ script = ExtResource("6_omma4")
 [node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="SubViewportContainer/SubViewport/World/testcube/TestCubeTarget"]
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/World"]
-transform = Transform3D(-1, 0, -1.5496e-07, 0, 1, 0, 1.5496e-07, 0, -1, 5.12966, 1.4, -0.0126548)
+transform = Transform3D(-0.717166, 0, 0.696903, 0, 1, 0, -0.696903, 0, -0.717166, 7.39971, 1.4, -0.0126519)
 cull_mask = 524287
 current = true
 fov = 37.8
@@ -409,8 +409,11 @@ process_physics_priority = 300
 script = ExtResource("14_in4bo")
 
 [node name="Player" parent="SubViewportContainer/SubViewport/World" node_paths=PackedStringArray("lockon_target") instance=ExtResource("25_ddo2k")]
-transform = Transform3D(-1, 0, 2.62268e-07, 0, 1, 0, -2.62268e-07, 0, -1, 5.12966, 0, -7.51273)
+transform = Transform3D(-0.717165, 0, 0.696903, 0, 1, 0, -0.696903, 0, -0.717165, 7.39971, 0, -7.51273)
 lockon_target = NodePath("../Enemy/EnemyTarget")
+
+[node name="PhantomCamera3D" parent="SubViewportContainer/SubViewport/World/Player" index="4"]
+transform = Transform3D(1.00001, 0, 4.47035e-07, 0, 1, 0, -4.47035e-07, 0, 1.00001, -5.22683, 1.4, -5.3788)
 
 [node name="LockOnViewport" type="SubViewport" parent="SubViewportContainer"]
 transparent_bg = true
@@ -419,3 +422,5 @@ canvas_cull_mask = 4293951488
 size = Vector2i(1280, 720)
 size_2d_override_stretch = true
 render_target_update_mode = 4
+
+[editable path="SubViewportContainer/SubViewport/World/Player"]

@@ -1,5 +1,7 @@
 extends SpringArm3D
 
+@onready var camera : PhantomCamera3D = $LockOnCamera
+
 @export var _follow_targets : Array[Node3D]
 
 var follow_offset = Vector3(0.2, 1.0, 0)
@@ -12,20 +14,18 @@ var auto_follow_distance_divisor = 10.0
 
 var follow_position : Vector3
 
+func _ready() -> void:
+	self.top_level = true
+
 func _physics_process(_delta: float) -> void:
 	if _follow_targets.size() > 1:
-		#look_at(_follow_targets[1].global_position)
-		
 		# code copied from LookAtMode.SIMPLE
-		#var direction: Vector3 = (_follow_targets[1].global_position - global_position).normalized()
-		var direction: Vector3 = (global_position - _follow_targets[1].global_position).normalized() # why does it have to be backwards
-		direction.y = -direction.y # why
+		var direction: Vector3 = (_follow_targets[1].global_position - global_position).normalized()
 		var target_basis: Basis = Basis.looking_at(direction)
 		var target_quat: Quaternion = target_basis.get_rotation_quaternion().normalized()
 		quaternion = target_quat
 		if rotation_degrees.x < -20:
 			rotation_degrees.x = -20
-		#print(rotation_degrees.x)
 		
 	# code copied from FollowMode.GROUP
 	var bounds: AABB = AABB(_follow_targets[0].global_position, Vector3.ZERO)
@@ -42,7 +42,7 @@ func _physics_process(_delta: float) -> void:
 		bounds.get_center() + \
 		follow_offset + \
 		get_transform().basis.z * \
-		-Vector3(distance, distance, distance) # whyyyyy
+		Vector3(distance, distance, distance)
 	
 	self.global_position = follow_position
 
@@ -53,3 +53,6 @@ func append_follow_targets(target : Node3D) -> void:
 func erase_follow_targets(target : Node3D) -> void:
 	self.remove_excluded_object(target)
 	_follow_targets.erase(target)
+
+func set_priority(priority : int) -> void:
+	camera.set_priority(priority)

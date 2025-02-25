@@ -1,6 +1,7 @@
 extends IKCC
 
 @onready var camera : PhantomCamera3D = $PhantomCamera3D
+@onready var target_camera : Node3D = $SpringArm3D
 
 @onready var model : Node3D = $Model
 
@@ -30,6 +31,9 @@ func _ready() -> void:
 		cam_rot = self.global_rotation_degrees
 		camera.set_third_person_rotation_degrees(cam_rot)
 	
+	if target_camera.global_rotation != self.global_rotation:
+		target_camera.global_rotation = self.global_rotation
+	
 func _unhandled_input(_event : InputEvent) -> void:
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
@@ -47,9 +51,9 @@ func _physics_process(delta : float) -> void:
 	cam_rot.x = clamp(cam_rot.x, -89.9, 90)
 	camera.set_third_person_rotation_degrees(cam_rot)
 	if camera.is_active():
-		$SpringArm3D.global_rotation = camera.global_rotation
+		target_camera.global_rotation = camera.global_rotation
 	else:
-		camera.set_third_person_rotation_degrees($SpringArm3D.global_rotation_degrees)
+		camera.set_third_person_rotation_degrees(target_camera.global_rotation_degrees)
 
 func transition_state(newState : PlayerState) -> void:
 	current_state.on_exit()
@@ -94,17 +98,17 @@ func try_lock_on() -> void:
 		lockon = true
 		lockon_target.lock_on()
 		
-		$SpringArm3D/LockOnCamera.set_priority(30)
-		$SpringArm3D.append_follow_targets(lockon_target)
+		target_camera.set_priority(30)
+		target_camera.append_follow_targets(lockon_target)
 
 		#lockon_camera.append_follow_targets(lockon_target)
 	else:
-		#cam_rot = lockon_camera.global_rotation_degrees
+		cam_rot = target_camera.global_rotation_degrees
 		
 		lockon_target.lock_off()
 		
-		$SpringArm3D/LockOnCamera.set_priority(0)
-		$SpringArm3D.erase_follow_targets(lockon_target)
+		target_camera.set_priority(0)
+		target_camera.erase_follow_targets(lockon_target)
 		
 		#lockon_camera.erase_follow_targets(lockon_target)
 		lockon = false
