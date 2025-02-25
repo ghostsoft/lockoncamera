@@ -26,9 +26,9 @@ func _ready() -> void:
 	current_state = grounded_state
 	current_state.on_enter(self)
 	
-	#if camera.rotation != self.global_rotation:
-		#cam_rot = self.global_rotation_degrees
-		#camera.set_third_person_rotation_degrees(cam_rot)
+	if camera.rotation != self.global_rotation:
+		cam_rot = self.global_rotation_degrees
+		camera.set_third_person_rotation_degrees(cam_rot)
 	
 func _unhandled_input(_event : InputEvent) -> void:
 	if Input.is_action_just_pressed("quit"):
@@ -48,6 +48,8 @@ func _physics_process(delta : float) -> void:
 	camera.set_third_person_rotation_degrees(cam_rot)
 	if camera.is_active():
 		$SpringArm3D.global_rotation = camera.global_rotation
+	else:
+		camera.set_third_person_rotation_degrees($SpringArm3D.global_rotation_degrees)
 
 func transition_state(newState : PlayerState) -> void:
 	current_state.on_exit()

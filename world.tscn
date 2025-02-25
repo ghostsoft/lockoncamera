@@ -398,7 +398,7 @@ script = ExtResource("6_omma4")
 [node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="SubViewportContainer/SubViewport/World/testcube/TestCubeTarget"]
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/World"]
-transform = Transform3D(-1, 0, -2.404e-07, 0, 1, 0, 2.404e-07, 0, -1, 5.12966, 1.4, -0.0126691)
+transform = Transform3D(-1, 0, -1.5496e-07, 0, 1, 0, 1.5496e-07, 0, -1, 5.12966, 1.4, -0.0126548)
 cull_mask = 524287
 current = true
 fov = 37.8
@@ -409,7 +409,7 @@ process_physics_priority = 300
 script = ExtResource("14_in4bo")
 
 [node name="Player" parent="SubViewportContainer/SubViewport/World" node_paths=PackedStringArray("lockon_target") instance=ExtResource("25_ddo2k")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 5.12966, 0, -7.51273)
+transform = Transform3D(-1, 0, 2.62268e-07, 0, 1, 0, -2.62268e-07, 0, -1, 5.12966, 0, -7.51273)
 lockon_target = NodePath("../Enemy/EnemyTarget")
 
 [node name="LockOnViewport" type="SubViewport" parent="SubViewportContainer"]
